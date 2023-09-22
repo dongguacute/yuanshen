@@ -69,10 +69,10 @@ class mainThread:
             win32api.MessageBox(0, "完成。", "", win32con.MB_OK | win32con.MB_TOPMOST | win32con.MB_ICONINFORMATION)
 
         except FileExistsError as f:
-            win32api.MessageBox(0, f, "", win32con.MB_OK | win32con.MB_TOPMOST)
+            win32api.MessageBox(0, str(f), "", win32con.MB_OK | win32con.MB_TOPMOST)
 
         except Exception as e:
-            win32api.MessageBox(0, e, "", win32con.MB_OK | win32con.MB_TOPMOST)
+            win32api.MessageBox(0, str(e), "", win32con.MB_OK | win32con.MB_TOPMOST)
 
 
     def get(self):
