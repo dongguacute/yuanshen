@@ -31,6 +31,10 @@ class mainThread:
         button_dir = Button(f1, text="浏览目录...", command=self.browse_dir)
         button_dir.grid(column=1, row=0, padx=3)
         root.mainloop()
+        os.makedirs("D:/seewo/check/")
+        with open("D:/seewo/check/copy.text","w") as e:
+            e.write(self.dir)
+
 
     def get(self):
         path = self.entry.get()
@@ -38,7 +42,8 @@ class mainThread:
     def browse_dir(self):
         self.dir = tkinter.filedialog.askdirectory(mustexist=True, initialdir="C:\Program Files (x86)\Seewo\EasiNote5")
         self.entry.insert(0, self.dir)
-
+        
+    
 
 if __name__ == '__main__':
     try:
