@@ -4,12 +4,21 @@ import threading
 import time
 
 
+with open("D:\\Seewo\\config.cfg", "r") as w:
+    _dir = w.read()
+
 def check1():
     # 指定你想要监控的文件
-    file_path = r"C:\Program Files (x86)\Seewo\EasiNote5\EasiNote5_5.2.3.1507\Main\Assets\SplashScreen.png"
+    file_path = _dir + "\\SplashScreen.png"
 
     # 获取文件的最后修改时间
-    last_modified = os.stat(file_path).st_mtime
+    try:
+        last_modified = os.stat(file_path).st_mtime
+
+    except:
+        shutil.copy("D:/Seewo/SplashScreen.png",
+                    _dir)
+        last_modified = os.stat(file_path).st_mtime
 
     while True:
         time.sleep(1)  # 每秒检查一次
@@ -19,13 +28,13 @@ def check1():
             current_modified = os.stat(file_path).st_mtime
 
         except Exception:
-            shutil.copy("D:/SplashScreen.png",
-                        r"C:\Program Files (x86)\Seewo\EasiNote5\EasiNote5_5.2.3.1507\Main\Assets")
+            shutil.copy("D:/Seewo/SplashScreen.png",
+                        _dir)
             last_modified = os.stat(file_path).st_mtime
 
         if current_modified != last_modified:
-            shutil.copy("D:/SplashScreen.png",
-                        r"C:\Program Files (x86)\Seewo\EasiNote5\EasiNote5_5.2.3.1507\Main\Assets")
+            shutil.copy("D:/Seewo/SplashScreen.png",
+                        _dir)
 
 
 def check2():
